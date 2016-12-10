@@ -41,7 +41,7 @@ public class TestQTReader extends TestCase {
     public void testReadMetaData() {
         QTReader reader = new QTReader();
         String filename =
-                "/Users/lpfeiler/save_desktop3/test video/XT210107.MOV";
+                "src/test/resources/XT210339.MOV";
 
         try(FileInputStream fis = new FileInputStream(filename)) {
             String prog = "step into moov\n"
