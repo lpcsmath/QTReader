@@ -33,5 +33,10 @@ String prog = "step into moov\n"
             + "read stsd\n";
 List<QTCommand> cmds = QTProgCompiler.compile(prog);
 QTReader reader = new QTReader();
-List<QTAtom> atoms = reader.readStream(fis,cmds);
+Collection<QTAtom> atoms = reader.readStream(fis,cmds);
 ```
+
+The reader then returns a collection of the appropriate atoms.
+In this case, there are two atoms (MvhdAtom, StsdAtom)
+inside of the returned collection, which provide the needed
+information.
