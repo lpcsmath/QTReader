@@ -29,9 +29,16 @@ public class TestQTReader extends TestCase {
                         + "read mvhd";
             List<QTCommand> cmds = QTProgCompiler.compile(prog);
             Collection<QTAtom> atoms = reader.readStream(fis, cmds);
+
+            //One MvhdAtom
             assertEquals(1, atoms.size());
-            QTAtom mvhd = atoms.iterator().next();
-            assertEquals(QTAtom.MVHD, mvhd.getType());
+            QTAtom a = atoms.iterator().next();
+            assertEquals(QTAtom.MVHD, a.getType());
+            assertEquals(true,a instanceof MvhdAtom);
+
+            MvhdAtom mvhd = (MvhdAtom) a;
+            assertEquals(24.0, mvhd.getFps());
+
 
         } catch (Exception e) {
             e.printStackTrace();

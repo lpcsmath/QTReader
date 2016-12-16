@@ -1,6 +1,8 @@
 package de.csmath.QT;
 
+import java.time.temporal.TemporalAmount;
 import java.util.*;
+import java.time.*;
 
 /**
  * The MvhdAtom class represents the QuickTime File Type Atom ('mvhd').
@@ -37,12 +39,12 @@ public final class MvhdAtom extends QTAtom {
     /**
      * The date and time when the movie was created.
      */
-    private final Date creationTime;
+    private final ZonedDateTime creationTime;
 
     /**
      * The date and time when the movie was changed.
      */
-    private final Date modificationTime;
+    private final ZonedDateTime modificationTime;
 
     /**
      * The number of time units that pass per second
@@ -184,7 +186,7 @@ public final class MvhdAtom extends QTAtom {
      * Returns the creation date and time of the movie.
      * @return the creation date and time of the movie
      */
-    public Date getCreationTime() {
+    public ZonedDateTime getCreationTime() {
         return creationTime;
     }
 
@@ -194,22 +196,25 @@ public final class MvhdAtom extends QTAtom {
      * @param time date/time value (in seconds since 1904-01-01 0:00)
      * @return the date/time value as java.util.Date
      */
-    private Date convertToDate(int time) {
-        Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-        cal.set(1904,0,1,0,0,0);
-        cal.set(Calendar.MILLISECOND,0);
-        long ct = ((1L << 32) + time) * 1000;
-        ct += cal.getTimeInMillis();
-        cal.setTimeInMillis(ct);
-        //TODO 2 hours off
-        return cal.getTime();
+    private ZonedDateTime convertToDate(int time) {
+//        Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+//        cal.set(1904,0,1,0,0,0);
+//        cal.set(Calendar.MILLISECOND,0);
+//        long ct = ((1L << 32) + time) * 1000;
+//        ct += cal.getTimeInMillis();
+//        cal.setTimeInMillis(ct);
+//        //TODO 2 hours off
+//        return cal.getTime();
+        ZonedDateTime dt = ZonedDateTime.of(1904,1,1,0,0,0,0,ZoneId.of("UTC"));
+        long ct = ((1L << 32) + time);
+        return dt.plusSeconds(ct);
     }
 
     /**
      * Returns the modification time.
      * @return the modification time
      */
-    public Date getModificationTime() {
+    public ZonedDateTime getModificationTime() {
         return modificationTime;
     }
 
