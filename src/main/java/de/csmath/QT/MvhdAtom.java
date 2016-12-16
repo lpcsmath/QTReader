@@ -1,6 +1,5 @@
 package de.csmath.QT;
 
-import java.time.temporal.TemporalAmount;
 import java.util.*;
 import java.time.*;
 
@@ -197,14 +196,6 @@ public final class MvhdAtom extends QTAtom {
      * @return the date/time value as java.util.Date
      */
     private ZonedDateTime convertToDate(int time) {
-//        Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-//        cal.set(1904,0,1,0,0,0);
-//        cal.set(Calendar.MILLISECOND,0);
-//        long ct = ((1L << 32) + time) * 1000;
-//        ct += cal.getTimeInMillis();
-//        cal.setTimeInMillis(ct);
-//        //TODO 2 hours off
-//        return cal.getTime();
         ZonedDateTime dt = ZonedDateTime.of(1904,1,1,0,0,0,0,ZoneId.of("UTC"));
         long ct = ((1L << 32) + time);
         return dt.plusSeconds(ct);
