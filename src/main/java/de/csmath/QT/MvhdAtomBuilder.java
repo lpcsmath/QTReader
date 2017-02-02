@@ -275,6 +275,7 @@ public class MvhdAtomBuilder extends QTAtomBuilder {
      * @return a new MvhdAtom
      */
     public MvhdAtom build() {
-        return new MvhdAtom(size, type, creationTime, timeScale, duration);
+        return new MvhdAtom(size, type, creationTime,
+                modificationTime, timeScale, duration);
     }
 }

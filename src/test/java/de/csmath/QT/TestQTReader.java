@@ -38,6 +38,8 @@ public class TestQTReader extends TestCase {
 
             MvhdAtom mvhd = (MvhdAtom) a;
             assertEquals(24.0, mvhd.getFps());
+            System.out.println(mvhd.getCreationTime());
+            System.out.println(mvhd.getModificationTime());
 
 
         } catch (Exception e) {

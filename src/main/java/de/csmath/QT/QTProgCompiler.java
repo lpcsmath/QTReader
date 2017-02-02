@@ -40,12 +40,12 @@ public class QTProgCompiler {
      */
     public static List<QTCommand> compile(String[] prog) {
         List<QTCommand> code = Arrays.stream(prog)
-                .map( line -> line.trim() )
-                .map( line -> line.toLowerCase() )
-                .map( line -> line.split("\\s+") )
-                .filter( tokens -> tokens.length > 0 )
-                .filter( tokens -> tokens[0].length() > 0 )
-                .filter( tokens -> !tokens[0].startsWith("#") )
+                .map( line -> line.trim()
+                        .toLowerCase()
+                        .split("\\s+") )
+                .filter( tokens -> (tokens.length > 0) &&
+                            (tokens[0].length() > 0) &&
+                            !tokens[0].startsWith("#") )
                 .map( tokens -> tokens2Commands(tokens) )
                 .collect(Collectors.toList());
         return code;

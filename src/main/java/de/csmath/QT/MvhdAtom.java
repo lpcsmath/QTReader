@@ -167,8 +167,10 @@ public final class MvhdAtom extends QTAtom {
         this.nextTrackId = nextTrackId;
     }
 
-    public MvhdAtom(int size, int type, int creationTime, int timeScale, int duration) {
-        this(size,type,(byte)0,new byte[0],creationTime,0,timeScale,duration,
+    public MvhdAtom(int size, int type, int creationTime,
+                    int modificationTime, int timeScale, int duration) {
+        this(size,type,(byte)0,new byte[0],creationTime,
+                modificationTime,timeScale,duration,
                 0,(short)0,new byte[0], new int[0],
                 0,0,0,0,0,0,0);
     }
